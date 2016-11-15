@@ -3,22 +3,45 @@ package com.revature.lang;
 public class JavaLang {
 
 	public static void main(String[] args) {	
-		// prints all the elements
-		int[] array = {1,2,3,4,5,6,7,8,9};
-		for( int index=0; index < array.length; ++index ){
-			//System.out.println( array[index] );
-		}
+		// works with byte, short, char, and int
+		// also String and enum
+		char a = 'a';
 		
-		// for each temp in the array
-					// iterable.. contains an iterator
-		for(int temp : array){
-			System.out.print(temp);
+		switch(a){
+			case 'a':{
+				System.out.println("char is 'a'");
+				break;
+			}
+			case 'b':{
+				System.out.println("char is 'b'");
+				break;
+			}
+			case 'A':{
+				System.out.println("char is 'A'");
+				break;
+			}
+			default: {
+				System.out.println("char is something else");
+				break;
+			}
 		}
-		
 	}
 	
 	
 	
+	
+	
+	/*		// prints all the elements
+	int[] array = {1,2,3,4,5,6,7,8,9};
+	for( int index=0; index < array.length; ++index ){
+		//System.out.println( array[index] );
+	}
+	
+	// for each temp in the array
+				// iterable.. contains an iterator
+	for(int temp : array){
+		System.out.print(temp);
+	}*/
 	
 	
 	/*		boolean isRunning = false;

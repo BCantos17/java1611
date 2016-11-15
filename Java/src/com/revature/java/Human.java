@@ -1,6 +1,7 @@
 package com.revature.java;
 
 public class Human {
+	
 	private int age;
 	private String name;
 	public Human(int age, String name) {
@@ -14,7 +15,14 @@ public class Human {
 	}
 	public static void main(String[] args) {
 		Human h = new Human();
+		System.out.println(h);
 	}
+	
+	@Override
+	public String toString() {
+		return name + " is " + age + " years old";
+	}
+	
 	public int getAge() {
 		return age;
 	}
