@@ -1,6 +1,7 @@
 package com.revature.collections;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ListExample {
@@ -10,16 +11,16 @@ public class ListExample {
 		List<Student> list = new ListExample().createStudents();
 		
 		// print all students
-/*		for(Student student : list){
+		//Collections.sort(list);
+		for(Student student : list){
 			System.out.println(student.name);
-		}*/
+		}
 		
 		// get by index
-		System.out.println( list.get( 11 ).name );
+		//System.out.println( list.get( 11 ).name );
 		
 		list.remove(11);
-		
-		System.out.println( list );
+	
 	}
 	
 	// populate students
@@ -48,11 +49,20 @@ public class ListExample {
 	}
 	
 }
-class Pickle{}
-class Student{
+	// this Student is comparable to other students
+	// used for SORTING -- Collections.sort(list)
+	// natural ordering -- the 'default' ordering
+class Student implements Comparable<Student>{
 	String name;
 	public Student(String name) {
 		super();
 		this.name = name;
+	}
+
+	public int compareTo(Student other) {
+		// equal = returns 0
+		// go before = returns negative
+		// go after = returns positive
+		return this.name.compareTo(other.name);
 	}
 }

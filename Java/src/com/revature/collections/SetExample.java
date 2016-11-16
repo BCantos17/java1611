@@ -1,23 +1,31 @@
 package com.revature.collections;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class SetExample {
 	
 	public static void main(String[] args) {
 		Set<Student> classroom = new SetExample().createStudents();
-		/*for(Student person : classroom){
+/*		for(Student person : classroom){
+			System.out.println(person.name);
+		}*/
+		List<Student> list = new ArrayList<>( classroom );
+		//Collections.sort(list);
+		
+		for(Student person : list){
 			System.out.println(person.name);
 		}
-		*/
 	}
-	
 
 	// populate students
 	private Set<Student> createStudents() {
 		// Student[] classroom = new Student[17];
-		HashSet<Student> list = new HashSet<>();
+		TreeSet<Student> list = new TreeSet<>();
 		Student a = new Student("Andrew Williams");
 		list.add(a);
 		list.add(new Student("David"));

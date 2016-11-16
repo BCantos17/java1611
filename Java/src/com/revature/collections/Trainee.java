@@ -1,11 +1,52 @@
 package com.revature.collections;
 
-public class Trainee {
+import java.util.Comparator;
 
+public class Trainee implements Comparable<Trainee>{
+
+	@Override
+	public String toString() {
+		return "Trainee [id=" + id + ", name=" 
+				+ name + ", major=" + major + "]";
+	}
 	// encapsulated, getter/setter naming, no-arg constructor
+	private static int var;
 	private int id;
 	private String name;
 	private String major;
+	
+	// static nested class
+	static class TraineeNameComparator 
+							implements Comparator<Trainee>{
+		@Override
+		public int compare(Trainee one, Trainee another) {
+			var = 100; // accessing outer class static variables
+			//major = "IT";   // will not compile
+			return one.name.compareTo(another.name);
+		}
+		
+	}
+	
+	// nested class
+	class TraineeMajorComparator implements Comparator<Trainee>{
+		// can access outer class's properties and methods
+		public void example(){
+			id = 100; var=100;
+		}
+		@Override
+		public int compare(Trainee one, Trainee another) {
+			return one.major.compareTo(another.major);
+		}
+		
+	}
+	
+	
+	@Override
+	public int compareTo(Trainee other) {
+		// natural ordering is ID least to greatest
+		return this.id - other.id;
+	}
+	
 	
 	public Trainee() {
 		super();
@@ -66,6 +107,7 @@ public class Trainee {
 			return false;
 		return true;
 	}
+
 	
 	
 	
