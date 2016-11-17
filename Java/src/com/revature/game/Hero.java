@@ -5,14 +5,14 @@ import java.io.Serializable;
 					// no methods
 public class Hero implements Serializable{
 	
-	private String name;
-	private int level;
+	private String name = "Unnamed";
+	private int level = 1;
 	private int hitPoints;
 	private int manaPoints;
 	private int experiencePoints;
 	private String clazz;
 	// this variable will not be serialized
-	private transient String weapon;
+	private transient String weapon = "Hands";
 
 	@Override
 	public String toString() {

@@ -48,16 +48,22 @@ public class HeroDAO {
 		Scanner scanner = null;
 		try{
 			scanner = new Scanner(new File("heroes.txt"));
-			scanner.useDelimiter(",");
 			while(scanner.hasNextLine()){
-				Hero hero = new Hero(scanner.next(),
-								Integer.parseInt(scanner.next()),
-								Integer.parseInt(scanner.next()),
-								Integer.parseInt(scanner.next()),
-								Integer.parseInt(scanner.next()),
-								scanner.next(),
-								scanner.next());
-				heroes.add(hero);
+				String line = scanner.nextLine();
+				try(Scanner lineScanner = new Scanner(line)){
+					lineScanner.useDelimiter(",");
+					Hero hero = new 
+							Hero(
+								lineScanner.next(),
+								lineScanner.nextInt(),
+								lineScanner.nextInt(),
+								lineScanner.nextInt(),
+								lineScanner.nextInt(),
+								lineScanner.next(),
+								lineScanner.next()
+							);
+					heroes.add(hero);
+				}
 			}// EOF
 			return heroes;
 		}finally{
