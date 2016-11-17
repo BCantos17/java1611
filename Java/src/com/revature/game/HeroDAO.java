@@ -49,8 +49,11 @@ public class HeroDAO {
 		try{
 			scanner = new Scanner(new File("heroes.txt"));
 			while(scanner.hasNextLine()){
+				// get the line for this hero
 				String line = scanner.nextLine();
 				try(Scanner lineScanner = new Scanner(line)){
+					// parse properties for that hero with 
+					// another scanner
 					lineScanner.useDelimiter(",");
 					Hero hero = new 
 							Hero(
