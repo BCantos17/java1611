@@ -24,6 +24,8 @@ public class ListExample {
 	}
 	
 	// populate students
+	
+	@Deprecated
 	private List<Student> createStudents(){
 		// Student[] classroom = new Student[17];
 		ArrayList<Student> list = new ArrayList<>();
