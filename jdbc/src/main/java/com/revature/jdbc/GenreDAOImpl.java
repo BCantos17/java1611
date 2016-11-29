@@ -36,6 +36,7 @@ public class GenreDAOImpl implements GenreDAO{
 												// ? = parameter 
 		String sql = "INSERT INTO GENRE VALUES (?,?)";
 		PreparedStatement stmt = conn
+											// columns return by stmt.getGeneratedKeys
 				.prepareStatement(sql, new String[]{"genreid"});
 		// bind values to ? params
 		stmt.setString(2, genre.getName());
