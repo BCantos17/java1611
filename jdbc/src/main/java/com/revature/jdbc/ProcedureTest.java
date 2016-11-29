@@ -4,10 +4,11 @@ import java.sql.SQLException;
 
 public class ProcedureTest {
 
-	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+	public static void main(String[] args) throws Exception, SQLException {
 		EmployeeDAO dao = new EmployeeDAO();
-		String name = dao.getFullName(2);
-		System.out.println(name);
+		int youngEmployees = dao.youngEmployees();
+		System.out.println(youngEmployees);
+		
 	}
 	
 }

@@ -7,6 +7,23 @@ import java.sql.SQLException;
 import java.sql.Types;
 
 public class EmployeeDAO {
+	
+	public int youngEmployees() throws Exception{
+		Class.forName("oracle.jdbc.OracleDriver");
+		Connection conn = DriverManager
+				.getConnection(
+						"jdbc:oracle:thin:@localhost:1521:xe",
+						"chinook",
+						"chinook");
+		int result = 0; // to store returned value
+		CallableStatement stmt = conn
+				.prepareCall("{ ? = call YOUNG_EMPLOYEES() }");
+		stmt.registerOutParameter(1, Types.INTEGER);
+		stmt.execute();
+		result = stmt.getInt(1);
+		conn.close();
+		return result;
+	}
 
 	public String getFullName(int id) throws ClassNotFoundException, SQLException{
 		Class.forName("oracle.jdbc.OracleDriver");
