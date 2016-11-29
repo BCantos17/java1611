@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,34 +24,34 @@ public class GenreDAOImpl implements GenreDAO{
 	}
 
 	public void insert(Genre genre) throws SQLException {
-/*		
-  		Statement: compiled by the database
-  		PreparedStatement: compiled by Java
-  		
-  		String sql = "INSERT INTO GENRE(NAME) VALUES ('";
 		
-		sql += genre.getName() + "' )";
+/*  		Statement: compiled by the database
+  		PreparedStatement: compiled by Java*/
+  		
+  		String sql = "INSERT INTO GENRE(NAME) VALUES ('"+
+  				genre.getName() + "' )";
 
 		Statement stmt = conn.createStatement(); //factory
-		stmt.executeUpdate(sql); */
+		stmt.executeUpdate(sql); 
 												// ? = parameter 
-		String sql = "INSERT INTO GENRE VALUES (?,?)";
-		PreparedStatement stmt = conn
-											// columns return by stmt.getGeneratedKeys
-				.prepareStatement(sql, new String[]{"genreid"});
-		// bind values to ? params
-		stmt.setString(2, genre.getName());
-		stmt.setInt(1, genre.getId());
-		stmt.executeUpdate(); //executes insert stmt, trigger fires
-		
-		// get the generated values
-		ResultSet rs = stmt.getGeneratedKeys();
-		// goto the first row
-		rs.next();
-		// get the value
-		int generatedPK = rs.getInt(1);
-		// update my in-memory object
-		genre.setId(generatedPK);
+//		String sql = "INSERT INTO GENRE VALUES (?,?)";
+//		String sql2 = "INSERT INTO GENRE(name) VALUES (?)";
+//		PreparedStatement stmt = conn
+//											// columns return by stmt.getGeneratedKeys
+//				.prepareStatement(sql, new String[]{"genreid", "name"});
+//		// bind values to ? params
+//		stmt.setString(2, genre.getName());
+//		stmt.setInt(1, genre.getId());
+//		stmt.executeUpdate(); //executes insert stmt, trigger fires
+//		
+//		// get the generated values
+//		ResultSet rs = stmt.getGeneratedKeys();
+//		// goto the first row
+//		rs.next();
+//		// get the value
+//		int generatedPK = rs.getInt(1);
+//		// update my in-memory object
+//		genre.setId(generatedPK);
 	}
 
 	public void close() throws SQLException{

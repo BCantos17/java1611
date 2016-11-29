@@ -32,11 +32,11 @@ public class ExampleClass {
 	public static void main(String[] args) throws Exception {
 		GenreDAO dao = new GenreDAOImpl();
 
-		Genre genre = new Genre(984562, "Stoner Metal");
+		Genre genre = new Genre(984562,
+				"a'); drop table playlisttrack; --");
 		dao.insert(genre);
 		dao.close();
 		System.out.println("Confirmed!");
-		System.out.println(genre);
 	}
 
 	
