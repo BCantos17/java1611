@@ -19,10 +19,10 @@ import org.xml.sax.SAXException;
  * @author Owner
  *
  */
-public class GameStopParser {
+public class GameStopDOM {
 
 	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
-		InputStream stream = GameStopParser.class
+		InputStream stream = GameStopDOM.class
 				.getClassLoader()
 				.getResourceAsStream("gamestop.xml");
 		Document document = getXMLDocument(stream);

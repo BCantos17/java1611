@@ -18,7 +18,7 @@ public class GameStopJAXB {
 	public static void main(String[] args) throws JAXBException {
 		JAXBContext ctxt = JAXBContext.newInstance(Gamestop.class);
 		Unmarshaller beanMaker = ctxt.createUnmarshaller();
-		InputStream stream = GameStopParser.class
+		InputStream stream = GameStopDOM.class
 				.getClassLoader()
 				.getResourceAsStream("gamestop.xml");
 		
