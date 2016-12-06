@@ -7,8 +7,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-HttpServletRequest: <%= request.getAttribute("requestData") %><br/>
-HttpSession: <%= session.getAttribute("sessionData") %><br/>
-<a href="customerHome.jsp">Click</a>
+<%
+	if(request.getAttribute("welcomeBack") != null){
+		out.println(request.getAttribute("welcomeBack"));
+	}
+ %>
+You entered <%= request.getParameter("username") %> as username.
 </body>
 </html>
+
+
+
+

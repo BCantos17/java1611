@@ -17,7 +17,8 @@ public class AddCustomerServlet extends HttpServlet{
 		String first = req.getParameter("firstName");
 		String last = req.getParameter("lastName");
 		String email = req.getParameter("email");
-		Customer customer = new Customer(id, first, last, email);
+		Customer customerReq = new Customer(id, first, last, email);
+		Customer customerSes = new Customer(id, first, last, email);
 		// insert into database
 /*		CustomerDAO dao = new CustomerDAO();
 		dao.insert(customer);*/
@@ -25,9 +26,16 @@ public class AddCustomerServlet extends HttpServlet{
 		// upon success, prepare the view 
 			// scope: (application, session, request, page)
 		// then send them to a homepage
-		req.setAttribute("me", customer); // data available on next page
+		req.setAttribute("requestData", customerReq); // data available on next page
+		req.getSession().setAttribute("sessionData",
+				customerSes);
+		//req.getSession().setMaxInactiveInterval(10);
+		// forward request
 		req.getRequestDispatcher("customerHome.jsp")
 			.forward(req, resp);
+		// doesn't forward request
+		//resp.sendRedirect("customerHome.jsp");
+		//req.getSession().invalidate(); // erase HttpSession obj
 	}
 	
 	@Override

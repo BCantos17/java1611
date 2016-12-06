@@ -7,8 +7,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-HttpServletRequest: <%= request.getAttribute("requestData") %><br/>
-HttpSession: <%= session.getAttribute("sessionData") %><br/>
-<a href="customerHome.jsp">Click</a>
+<form action="login" method="post">
+	Username: <input type="text" name="username"/> 		<br/>
+	Password: <input type="password" name="password"/>  <br/>
+			  <input type="submit" value="Login" />		<br/>
+	Remember me? <input type="checkbox" name="remember" value="Y" />
+</form>
 </body>
 </html>
+
+
+
+
+
