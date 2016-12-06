@@ -22,6 +22,12 @@ public class HelloServlet extends HttpServlet{
 	@Resource(name="datasource/chinook")
 	private DataSource chinook;
 
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("doGET method");
+		this.doPost(req, resp);
+	}
+
 	/**
 	 * Handles HTTP Post requests.
 	 * This method is invoked by servlet container
@@ -32,6 +38,7 @@ public class HelloServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest req, 
 			HttpServletResponse resp)
 					throws ServletException, IOException {
+		
 		// DAO call
 		try {
 			Connection conn = chinook.getConnection();
@@ -51,15 +58,23 @@ public class HelloServlet extends HttpServlet{
 			
 			// if exists, they goto homepage
 			if(gotResult){
-				PrintWriter out = resp.getWriter();
+				/*PrintWriter out = resp.getWriter();
 				out.println("<html><body> Homepage! Hello, User "
-						+id+ "</body></html> ");
+						+id+ "</body></html> ");*/
+
+				// move to another page
+				req.getRequestDispatcher("home.html")
+					.forward(req, resp);
+				
 			}
 			// if not, they get a fail page
 			else{
-				PrintWriter out = resp.getWriter();
+				/*PrintWriter out = resp.getWriter();
 				out.println("<html><body> You fail @ logging in "
-						+ "</body></html>");
+						+ "</body></html>");*/
+				
+				// tells browser to goto the following page
+				resp.sendRedirect("fail.html");
 			}
 			
 		} catch (SQLException e) {
