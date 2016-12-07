@@ -1,3 +1,0 @@
-Bratac,99,2000,0,100000,Paladin,Excalibur
-Preude,99,1700,1250,100000,Red Mage,Joyeuse
-Dan Pickles,99,3000,0,999999,Samurai,Katana

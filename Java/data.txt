@@ -1,2 +1,0 @@
-Hello, close method!
- always close resources?  yes, please
