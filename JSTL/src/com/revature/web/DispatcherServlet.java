@@ -3,6 +3,7 @@ package com.revature.web;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -53,6 +54,15 @@ public class DispatcherServlet extends HttpServlet{
 		
 		// put something into application scope
 		this.getServletContext().setAttribute("list", employees);
+		List<String> daysOfWeek = new ArrayList<String>();
+		daysOfWeek.add("Monday");
+		daysOfWeek.add("Tuesday");
+		daysOfWeek.add("Wednesday");
+		daysOfWeek.add("Thursday");
+		daysOfWeek.add("Friday");
+		daysOfWeek.add("Saturday");
+		daysOfWeek.add("Sunday");
+		this.getServletContext().setAttribute("days", daysOfWeek);
 	}
 
 	@Override
@@ -64,6 +74,9 @@ public class DispatcherServlet extends HttpServlet{
 		switch(requestURI){
 			case "/JSTL/employees.do":{
 				new EmployeeController().doAll(request, response);			
+				break;
+			}case "/JSTL/pickDay.do":{
+				new EmployeeController().pickDay(request, response);			
 				break;
 			}
 			default:{

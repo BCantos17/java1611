@@ -31,6 +31,19 @@ public class EmployeeController {
 		return (List<Employee>) 
 				request.getServletContext().getAttribute("list");
 	}
+
+
+
+	public void pickDay(HttpServletRequest request,
+			HttpServletResponse response) {
+		String chosenDay = request.getParameter("selectedDay");
+		System.out.println("User picked " + chosenDay);
+		// chosenDay=Friday&goodDay=Monday&goodDay=Tuesday
+		String[] goodDays = request.getParameterValues("goodDay");
+		for(String day : goodDays){
+			System.out.println("You like " + day + ", don't you?");
+		}
+	}
 	
 	
 
