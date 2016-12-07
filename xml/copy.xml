@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<gamestop>
+    <section name="Nintendo">
+        <game>
+            <genre>Platformer</genre>
+            <price>5.99</price>
+            <release>1985</release>
+            <title>Super Mario 3</title>
+        </game>
+        <game>
+            <genre>Racing</genre>
+            <price>9.99</price>
+            <release>1991</release>
+            <title>Mario Kart</title>
+        </game>
+    </section>
+    <section name="XBox">
+        <game>
+            <genre>Shooter</genre>
+            <price>59.99</price>
+            <release>2005</release>
+            <title>Gears of War 2</title>
+        </game>
+    </section>
+    <section name="PS4">
+        <game>
+            <genre>Adventure</genre>
+            <price>79.99</price>
+            <release>2016</release>
+            <title>Heavy Rain</title>
+        </game>
+    </section>
+    <section name="PC">
+        <game>
+            <genre>Shooter</genre>
+            <price>39.99</price>
+            <release>2005</release>
+            <title>Counterstrike</title>
+        </game>
+    </section>
+    <section name="Nintendo DS"/>
+</gamestop>

@@ -8,11 +8,26 @@
 	<servlet>
 		<servlet-name>dispatch</servlet-name>
 		<servlet-class>com.revature.web.DispatcherServlet</servlet-class>
+		<!-- configure only this servlet -->
+		<init-param>
+			<param-name>configFile</param-name>
+			<param-value>/WEB-INF/config.xml</param-value>
+		</init-param>
+		
+		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>dispatch</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
+
+	
+	<!-- shared by all filters, servlets, any resources! -->
+	<context-param>
+		<param-name>key</param-name>
+		<param-value>value</param-value>
+	</context-param>
+
 
 </web-app>
 
