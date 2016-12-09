@@ -1,6 +1,7 @@
 package com.revature.web;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -19,6 +20,9 @@ public class EmployeeController {
 		// call services to grab data. put it into some scope
 		List<Employee> list = someMiddleTierCall(request);
 		request.setAttribute("list", list);
+		if(Math.random() > 0.5){
+			request.setAttribute("msg", "You have mail");
+		}
 		request.getRequestDispatcher("/WEB-INF/pages/employees.jsp")
 			.forward(request, response);
 	}
@@ -35,14 +39,23 @@ public class EmployeeController {
 
 
 	public void pickDay(HttpServletRequest request,
-			HttpServletResponse response) {
+			HttpServletResponse response) throws IOException {
 		String chosenDay = request.getParameter("selectedDay");
-		System.out.println("User picked " + chosenDay);
+		PrintWriter out = response.getWriter();
+		
+		// check something
+		if(chosenDay.equals("[Monday")){
+			throw new 
+				IllegalArgumentException("Why would you like Mondays?");
+		}
+		
+		out.println("User picked " + chosenDay);
 		// chosenDay=Friday&goodDay=Monday&goodDay=Tuesday
 		String[] goodDays = request.getParameterValues("goodDay");
 		for(String day : goodDays){
-			System.out.println("You like " + day + ", don't you?");
+			out.println("You like " + day + ", don't you?");
 		}
+		
 	}
 	
 	

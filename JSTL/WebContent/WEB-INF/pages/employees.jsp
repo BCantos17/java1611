@@ -26,6 +26,9 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
+<c:if test="${not empty msg}">
+	<font color="red"> <c:out value="${msg}" /> </font>
+</c:if>
 	<h1>All Employees</h1>
 	<div class="container">
 		<table class="table">

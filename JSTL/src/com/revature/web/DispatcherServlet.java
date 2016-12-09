@@ -68,8 +68,7 @@ public class DispatcherServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) 
-					throws ServletException, IOException {
-		
+					throws ServletException, IOException {		
 		String requestURI = request.getRequestURI();
 		switch(requestURI){
 			case "/JSTL/employees.do":{
