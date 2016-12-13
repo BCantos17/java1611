@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Objects</title>
+<script type="text/javascript">
+// "constructor"
+function Trainee(id, name, major){
+	// state
+	this.id = id;
+	this.name = name;
+	this.major = major;
+	var likes = "Being awesome"; // not an "instance" variable
+	// behavior
+	this.callback = function(){
+		return "pickle";
+	}
+}
+			
+document.addEventListener("DOMContentLoaded", function(){
+	// making an object
+	var dan = new Trainee(1, "Dan Pickles", "IT");
+	document.getElementById("output").innerHTML = 
+		"<b>Id: " + dan.id + "<br/>" 
+		+"Name: " + dan.name + "<br/>"
+		+"Major: " + dan.major + "<br />"
+		+"SSN: " + dan.callback() +"</b>";
+		
+	var jsonString = JSON.stringify(dan);
+	document.getElementById("jason").innerText = jsonString;
+	
+	var danObject = JSON.parse(jsonString);
+	setTimeout(function(){
+		alert(danObject.name);
+	}, 3000); 
+}, false);
+
+var obj = {id:1, name:"Variable"};
+
+</script>
+</head>
+<body>
+<div id="output"></div>
+<div id="jason"></div>
+</body>
+</html>
+
+
+
+
+
+

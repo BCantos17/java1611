@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Image Swap Example</title>
+</head>
+<body>
+<img id='picture' src="off.jpg" />
+</body>
+<script type="text/javascript">
+var global = 100; // outside a function
+const on = "on.jpg"; // const cannot be changed
+const off = "off.jpg";
+
+function swap(event){
+	var local = 10; // inside a function
+	////////////////// swap logic /////////////////
+	var pic = document.getElementById("picture");
+	console.log(pic.src);
+	console.log(pic.getAttribute('src'));
+								
+	// boolean b = true;
+	// if(b){   works in Java.. and in JS  }
+	
+	// String x = null;
+	// if(!x){ does not work in Java.. works in JS  }
+	// in JS, truthy and falsy
+	if(!pic.pickle){ // undefined.. falsy
+		// executes fine
+	}
+	var a = 1;
+	var b = "1";
+	if(a === b){
+		alert("Equals!!");
+	}
+	
+	
+								//ctrlKey was pressed when evt occured
+	if(pic.getAttribute('src') == on && event.ctrlKey){
+		pic.src = off;
+	}else{
+		pic.src = on;
+	}
+}
+
+document.getElementById("picture").addEventListener("mouseleave",
+	 swap, false);
+document.getElementById("picture").addEventListener("mouseenter",
+	 swap, false); 
+</script>
+</html>
+
+
+
+
+
+
+

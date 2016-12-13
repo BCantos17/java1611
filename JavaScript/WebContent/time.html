@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Timing JS</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+</head>
+<body>
+<div class="progress">
+	<div id="prog" class="progress-bar" role="progressbar" 
+		aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" 
+		style="width: 0%;">
+	</div>
+</div>
+</body>
+<script type="text/javascript">
+var progressBar = document.getElementById("prog").style;
+
+// every 1000ms execute the callback function
+// setInterval repeats.. whereas setTimeout is only once
+var percent = 0;
+var interval = window.setInterval(function(){
+	percent += 10;
+	progressBar.width = percent + "%";
+	if(percent == 100){
+		window.clearInterval(interval);
+	}
+}, 1000);
+
+
+
+/* // wait 1000ms and execute callback function
+window.setTimeout(function(){
+	progressBar.width = "10%";
+}, 1000);
+window.setTimeout(function(){
+	progressBar.width = "20%";
+}, 2000);
+window.setTimeout(function(){
+	progressBar.width = "30%";
+}, 3000);
+window.setTimeout(function(){
+	progressBar.width = "70%";
+}, 4000);
+window.setTimeout(function(){
+	progressBar.width = "100%";
+}, 5000); */
+</script>
+</html>
+
+
+
+
+
+
