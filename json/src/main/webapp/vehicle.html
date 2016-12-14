@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>jQuery Ajax</title>
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<h1>Vehicle</h1>
+<table id="car">
+	<thead><tr>
+		<th>VIN</th>
+		<th>Year</th><th>Make</th><th>Model</th>
+		<th>Driver</th><th>Age</th><th>Licensed</th>
+	</tr></thead>
+	<tbody></tbody>
+</table>
+<h2>Passengers</h2>
+<table id="passengers">
+	<thead><tr>
+		<th>Name</th><th>Age</th>
+	</tr></thead>
+	<tbody></tbody>
+</table>
+<button id="go">GO</button>
+
+<hr/>
+<h1>Add Passenger</h1>
+Name: <input type="text" id="name" /> <br/>
+Age: <input type="number" id="age"/> <br/>
+<button id="send">POST</button>
+</body>
+<script type="text/javascript">
+$("#send").click(function(){
+	var person_name = $("#name").val();
+	var person_age = $("#age").val();
+	var obj = JSON.stringify({name: person_name, age: person_age});
+	
+	$.ajax({
+		method: "POST", 
+		url:"http://localhost:7001/json/car.do", 
+		data: obj
+	});
+	// data: puts data into request body
+});
+
+
+$("#go").click(function() {
+	$("table tbody").empty();
+	$.ajax({
+		method:"GET",
+		url:"http://localhost:7001/json/car.do",
+		dataType:"json",
+		success: function(resp){
+			// car
+			var row = "<tr><td>"+ resp.vin +"</td>"+
+					  "<td>"+ resp.year +"</td>"+
+					  "<td>"+resp.make+"</td>"+
+					  "<td>"+resp.model+"</td>"+
+					  "<td>"+resp.driver.name+"</td>"+
+					  "<td>"+resp.driver.age+"</td>"+
+					  "<td>"+resp.driver.licensed+"</td></tr>";
+			$("#car tbody").append(row);
+			
+			// passengers
+			var iterable = resp.passengers;
+			// for each passenger in array, add passenger to table
+			$.each(iterable, function(i, item){
+				var rider = "<tr>"+
+					"<td>"+item.name+"</td>"+
+					"<td>"+item.age+"</td></tr>";
+				$("#passengers tbody").append(rider);
+			});
+		}
+	});
+});
+</script>
+</html>
+
+
+
+

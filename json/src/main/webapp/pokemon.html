@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Pokeman</title>
+</head>
+<body>
+<input type="number" id="pokeNum" /> <button id="go">Go!</button><br/>
+
+<div>
+	<h1 id="pokeName"></h1>
+		<h2>Name</h2>
+			<p id="name"></p>
+		<h2>Base XP</h2>
+			<p id="base_experience"></p>
+		<h2>Weight</h2>
+			<p id="weight"></p>
+</div>
+</body>
+<script type="text/javascript">
+// make XHR object, construct HTTP req, send request, handle response
+
+document.getElementById("go").addEventListener("click", ajaj, false);
+
+function ajaj(){
+	// 1. Create request
+	var xhr = new XMLHttpRequest();
+	var httpMethod = "GET";
+	var resourceURL = "http://pokeapi.co/api/v2/pokemon/";
+	
+	// get the user input and construct HTTP req:
+			// set HTTP headers, set the URL, put data in request body
+	resourceURL += document.getElementById("pokeNum").value;
+	// 2. Open request
+	xhr.open(httpMethod, resourceURL, true);
+	// 2.5 Allow CORS
+	xhr.setRequestHeader("Access-Control-Allow-Origin",
+		 "http://localhost:7001");
+	// 3. State Change handler
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState === 4 && xhr.status === 200){
+			// this only happens when the server sends a successful resp
+			var json = xhr.responseText;
+			var pokemon = JSON.parse(json);
+			
+			// update the DOM (client-side rendering)
+			document.getElementById("name").innerText = pokemon.name;
+			document.getElementById("weight").innerText = pokemon.weight;
+			document.getElementById("base_experience").innerText = 
+				pokemon.base_experience;
+		}
+	}
+	// 4. Send HTTP request
+	xhr.send();
+	
+	
+} 
+</script>
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Trainee Datas</title>
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+<style type="text/css">
+.confirm{
+	background-color: green;
+	color: white;
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function(){  // DOMContentLoaded event listener
+	$("#name").keyup(function(){
+		var name = $("#name").val();
+		// null check
+		if(name){
+			// if not null: disdeenable button
+			//$("#add").attr("disabled"); // getter
+			$("#add").removeAttr("disabled");
+			$("#add").attr("enabled", "enabled"); //setter
+		}else{
+			// else: disenable button
+			$("#add").removeAttr("enabled");
+			$("#add").attr("disabled", "disabled");
+		}
+	});
+	
+	$("#add").click(function(){
+		var name = $("#name").val(); // extracts value property
+		// null check
+		if(!name){
+			alert("Please enter a name!");
+		}
+		var newRow = "<tr><td>" + name + "</td></tr>";
+		var tr = document.createElement("tr");
+		var td = document.createElement("td");
+		td.innerText += name;
+		tr.appendChild(td);
+		document.getElementById("traineeTable").appendChild(tr); 
+		
+		// jQuery
+		//$("#traineeTable").append(newRow);
+		
+		// turn green for a second or so!
+		$("#add").addClass("confirm"); 
+		window.setTimeout(function(){
+			$("#add").removeClass("confirm");
+		}, 1500);
+	});
+});
+</script>
+</head>
+<body>
+<input type="text" id="name" /> <br/>
+<button id="add" disabled>Add</button>
+
+<table id="traineeTable">
+	<tr><th>Name</th></tr>
+</table>
+
+
+</body>
+</html>
+
+
+
+

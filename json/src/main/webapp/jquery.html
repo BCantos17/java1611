@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>jQuery Features</title>
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<h1>Fade Out</h1>
+<p id="fadeout">Goodbye, user!</p>
+
+<h1>Toggle</h1>
+<p id="toggleText">Toggle text</p>
+<button id="toggle">Toggle</button>
+
+<h1>CSS</h1>
+<h2 id="changeCss">Header text</h2>
+
+</body>
+<script type="text/javascript">
+//document.getElementById() == $("css selecter")
+$("#fadeout").click(function(){
+	$("#fadeout").fadeOut(1000);
+});
+$("#toggle").click(function(){
+	$("#toggleText").toggle("fast", function(){
+		// do when complete
+		alert("animation done");
+	});
+});
+$("#changeCss").click(function(){
+	$("#changeCss").css("font-weight", "normal");
+	$("#changeCss").css("color", "orange");
+	$("<i> changed text values </i>").appendTo("#changeCss");
+});
+</script>
+</html>
+
+
+
+
+
+
+
