@@ -10,7 +10,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 /**
  * 
  * Selenium WebDriver 
- * 	Automate your testing! 
+ * 	Automate your testing!
+ * 
+ *  http://newtours.demoaut.com/
  *
  */
 public class HelloSelenium {
