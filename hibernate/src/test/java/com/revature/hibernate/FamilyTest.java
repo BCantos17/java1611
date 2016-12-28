@@ -30,8 +30,6 @@ public class FamilyTest {
 		// two people who meet
 		Parent dad = new Parent("Dan Pickles", phone1); 
 		Parent mom = new Parent("Donna Pickles", phone2); 
-		Set<Parent> couple = new HashSet<Parent>();
-		couple.add(dad); couple.add(mom);
 
 		// have kids
 		Child son = new Child("Howard Johnson");
