@@ -7,19 +7,20 @@
 
 	<!-- Declare our beans; "wire" them together -->
 	<bean 	name="facade" class="com.revature.data.Facade"
-			init-method="initialize" destroy-method="cleanup"
-	>
-	<!--  setter injection 		
-		<property name="dao" ref="daoBean"></property> -->
-		<constructor-arg name="dao" ref="daoBean" />
-	</bean>
+			init-method="initialize" destroy-method="cleanup" 
+			autowire="byName"
+	/>
 
 	<bean name="daoBean" class="com.revature.data.DAOImpl"
-		scope="singleton"
-	>
+		scope="singleton">
 		<property name="message" value="C:/config/file/location" />
 	</bean>
 	 <!--  lazy-init="true" -->
+
+	<context:component-scan 
+		base-package="com.revature.web" />
+
+	<!-- <import resource="other-beans.xml"/> -->
 
 </beans>
 

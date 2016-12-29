@@ -1,7 +1,10 @@
 package com.revature.data;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class Facade {
 
+	@Autowired
 	private DAO dao; 
 	
 	/**
