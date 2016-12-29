@@ -16,9 +16,18 @@ public class DAOImpl implements DAO,
 
 	private String beanName;
 	private ApplicationContext contxt;
+	private String message; 			// Inject a value here
+
+	/**
+	 * Setter Injection
+	 * @param message
+	 */
+	public void setMessage(String message) {
+		this.message = message;
+	}
 
 	public void deleteAll() {
-		System.out.println("Deleting everything..");
+		System.out.println(message);
 	}
 
 	public DAOImpl() {

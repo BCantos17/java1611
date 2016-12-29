@@ -16,7 +16,13 @@
 
 	<bean name="daoBean" class="com.revature.data.DAOImpl"
 		scope="singleton"
-	 />
+	>
+		<property name="message" value="C:/config/file/location" />
+	</bean>
 	 <!--  lazy-init="true" -->
 
 </beans>
+
+
+
+
