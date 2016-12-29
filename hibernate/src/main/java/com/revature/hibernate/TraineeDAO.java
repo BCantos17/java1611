@@ -4,16 +4,60 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 
 public class TraineeDAO {
 	
 	private SessionFactory sf = new Configuration().configure()
 			.buildSessionFactory();
+	
+	public List<Trainee> criteria(){
+		/*
+		 * Programmatically build queries. 0SQL 0HQL.. call methods
+		 */
+		Criteria criteria = sf.openSession()
+				.createCriteria(Trainee.class);
+		// adding Restrictions to the resultset
+		
+		// WHERE TRAINEE_ID BETWEEN 1 AND 5
+		criteria.add(Restrictions.between("id", 1, 5)); 
+		// AND MAJOR NOT NULL
+		criteria.add(Restrictions.isNotNull("major"));
+		// AND TRAINEE_NAME LIKE '%Dan%'
+		criteria.add(Restrictions.like("name", "%Dan%"));
+		// ORDER BY TRAINEE_ID
+		criteria.addOrder(Order.desc("name"));
+		// execute
+		return criteria.list();
+		
+		/**
+		 * Restrictions == WHERE clause
+		 * Projections === Aggregate function
+		 * 
+		 * return session.createCriteria(Trainee.class)
+		 * 			.add(Restrictions.between("id", 1, 5))
+		 * 			.add(Restrictions.isNotNull("major"))
+		 * 			.add(Restrictions.like("name", "%Dan%"))
+		 * 			.addOrder(Order.desc("name"))
+		 * 			.setProjection(Projections.count("id"))
+		 * 			.uniqueResult();
+		 */
+		/**
+		 * getAll() would look like:
+		 * 
+		 * return session.createCriteria(Trainee.class).list();
+		 * 
+		 */
+	}
+	
 	
 	public void update(Trainee trainee){
 		Session session = sf.openSession();

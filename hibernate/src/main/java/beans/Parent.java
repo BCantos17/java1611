@@ -10,6 +10,7 @@ import javax.persistence.*;
  * #1 easier; #2 beans compatible with other ORM/Persistence Frameworks
  */
 
+@Cacheable
 @Entity
 @Table(name="ORM_PARENT_TABLE") // name of Physical table
 public class Parent {			// name of bean is different
@@ -23,11 +24,11 @@ public class Parent {			// name of bean is different
 	@Column(nullable=false, unique=true, length=50, updatable=false)
 	private String name;
 	
-	@OneToOne(cascade=CascadeType.REMOVE) 	// delete orphans
+	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.LAZY) 	
 	@JoinColumn(nullable=false)				// configure FK columns
 	private Phone phone;
 	
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)		// load kids when I get parent
 	@JoinTable							
 	private Set<Child> kids = new HashSet<Child>();
 	
