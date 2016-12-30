@@ -5,6 +5,41 @@
 <title>Insert title here</title>
 </head>
 <body>
-Hello Spring
+<h1>Hello Spring</h1>
+Find: <input id="val" type="number" /> <button id="go">GO!</button><br/>
+
+<div id="output"></div>
+
+<hr/>
+
 </body>
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+  <script type="text/javascript">
+  
+  $("#go").click(function(){
+  	var q = $("#val").val();
+  	$.ajax({
+  		type:"GET",
+  		url:"http://localhost:9001/springmvc/trainee?q="+q ,
+  		success: function(resp){
+  			if(resp){
+  				renderTrainee(resp);
+  			}else{
+  				renderError(resp);
+  			}
+  		}
+  	});
+  });
+  
+  function renderTrainee(resp){
+  	$("#output").html("<strong>"+ resp.name +"</strong> Major:" + resp.major);
+  }
+  function renderError(resp){
+  	$("#output").html("<strong>Does not exist</strong>");
+  }
+  
+  </script>
 </html>
