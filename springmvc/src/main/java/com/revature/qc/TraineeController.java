@@ -2,11 +2,13 @@ package com.revature.qc;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +26,16 @@ public class TraineeController {
 	public void setBusinessDelegate(Delegate businessDelegate) {
 		this.businessDelegate = businessDelegate;
 	}
-
+	
+	@RequestMapping(value={"/home"}, method=RequestMethod.GET)
+	// no response body.. returned value goes to IRVR
+	public String homePage(){
+		// InternalResourceViewResolver will prepend the prefix
+				// /WEB-INF/pages/index.html
+		// requestDispatcher.forward(req,resp)
+		return "home"; 
+	}
+	
 	// localhost:9001/springmvc/trainee/18
 	@ResponseBody
 	@RequestMapping(value="/trainee/{param}", 		// PathParam
@@ -54,7 +65,13 @@ public class TraineeController {
 	
 	@RequestMapping(value="/trainee/insert", method=RequestMethod.POST, 
 					consumes="application/json")
-	public ResponseEntity insert(@RequestBody Trainee obj){
+	public ResponseEntity insert(@RequestBody @Valid Trainee obj, 
+			BindingResult result){ // BResult holds errors
+		if(result.hasErrors()){
+			return new ResponseEntity("Failed",
+					HttpStatus.BAD_REQUEST);
+		}
+		
 		businessDelegate.insert(obj);
 		return new ResponseEntity(HttpStatus.CREATED);
 	}

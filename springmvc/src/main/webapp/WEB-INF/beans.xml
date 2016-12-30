@@ -12,13 +12,18 @@
 		1. use annotations to configure request mappings
 		2. scan a package for beans and controllers
 		3. scan for @Autowired
+		4. declare a view resolver to do redirects/forwards
 	 -->
 	
 	<mvc:annotation-driven />
 	<context:component-scan base-package="com.revature.qc" />
 	<context:annotation-config />
 	
-
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/pages/" />
+		<property name="suffix" value=".html" />
+	</bean>
+	<mvc:resources mapping="/pages/**" location="/WEB-INF/pages/" />
 </beans>
 
 

@@ -4,18 +4,36 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
 
 //@XmlRootElement		JAX-B
 @Entity
 @Table(name="TRAINEE")
 public class Trainee {
 
+	// Hibernate  -- when persisting an object //
 	@Id
-	@Column(name="TRAINEE_ID")
+	@Column(name="TRAINEE_ID", nullable=false)
+	// Hibernate //
+	
+	// Spring  -- processes while reading request to "beanify" inputs //
+	@Digits(integer=999999, fraction=0)
+	// Spring //
 	private int id;
+	
 	@Column(name="TRAINEE_NAME")
+	@NotNull
+	@Size(max=50, message="Name is too long")
+	@Email
 	private String name;
+	
 	@Column(name="MAJOR")
+	@NotNull
+	@Size(max=50)
 	private String major;
 	
 	@Override
