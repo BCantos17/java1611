@@ -1,13 +1,21 @@
 package com.revature.qc.beans;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-@XmlRootElement
+//@XmlRootElement		JAX-B
+@Entity
+@Table(name="TRAINEE")
 public class Trainee {
 
+	@Id
+	@Column(name="TRAINEE_ID")
 	private int id;
+	@Column(name="TRAINEE_NAME")
 	private String name;
+	@Column(name="MAJOR")
 	private String major;
 	
 	@Override
@@ -31,21 +39,21 @@ public class Trainee {
 	public Trainee() {
 		super();
 	}
-	@XmlElement
+	//@XmlElement	JAX-B
 	public void setId(int id) {
 		this.id = id;
 	}
 	public String getName() {
 		return name;
 	}
-	@XmlElement
+	//@XmlElement
 	public void setName(String name) {
 		this.name = name;
 	}
 	public String getMajor() {
 		return major;
 	}
-	@XmlElement
+	//@XmlElement
 	public void setMajor(String major) {
 		this.major = major;
 	}

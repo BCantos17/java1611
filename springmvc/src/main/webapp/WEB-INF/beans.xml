@@ -11,10 +11,13 @@
 	<!-- tell Spring: 
 		1. use annotations to configure request mappings
 		2. scan a package for beans and controllers
+		3. scan for @Autowired
 	 -->
 	
 	<mvc:annotation-driven />
 	<context:component-scan base-package="com.revature.qc" />
+	<context:annotation-config />
+	
 
 </beans>
 
