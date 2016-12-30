@@ -1,5 +1,7 @@
 package com.revature.qc;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +17,15 @@ public class Delegate {
 		this.facade = facade;
 	}
 
-	public Trainee getDan(){
-		return facade.getDan();
+	public Trainee getDan(int id){
+		return facade.getDan(id);
 	}
 	
+	public List<Trainee> getAll(){
+		return facade.getAll();
+	}
+
+	public void insert(Trainee obj) {
+		facade.insert(obj);
+	}
 }

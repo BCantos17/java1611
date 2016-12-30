@@ -1,5 +1,7 @@
 package com.revature.qc.data;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
@@ -16,8 +18,20 @@ public class DAO {
 		this.session = session;
 	}
 
-	public Trainee getDanRecord(){
-		int rowNum = 17;
-		return (Trainee) session.get(Trainee.class, rowNum);
+	public Trainee getDanRecord(int id){
+		return (Trainee) session.get(Trainee.class, id);
+	}
+	
+	public List<Trainee> getAll(){
+		return session.createCriteria(Trainee.class).list();
+	}
+
+	public void insert(Trainee obj) {
+		session.saveOrUpdate(obj);
 	}
 }
+
+
+
+
+
