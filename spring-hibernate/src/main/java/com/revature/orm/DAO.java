@@ -11,7 +11,7 @@ public class DAO {
 	public void setSessionFactory(SessionFactory sessionFactory) {this.sessionFactory = sessionFactory;}
 	
 	@Transactional(	isolation=Isolation.READ_COMMITTED,
-					propagation=Propagation.REQUIRES_NEW,
+					propagation=Propagation.REQUIRED,
 					rollbackFor=Exception.class)
 	public void insert(Object obj){
 		sessionFactory.getCurrentSession().save(obj);
