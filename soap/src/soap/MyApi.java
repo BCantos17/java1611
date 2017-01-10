@@ -11,18 +11,22 @@ public class MyApi {
 	
 	// CRUD methods
 	public void create(JavaBean bean){
+		System.out.println("CREATE: " + bean);
 		database.put(bean.getId(), bean);
 	}
 	
 	public JavaBean get(int id){
+		System.out.println("GET: " + id);
 		return database.get(id);
 	}
 	
 	public Collection<JavaBean> getAll(){
+		System.out.println("GET ALL");
 		return database.values();
 	}
 	
 	public void delete(int id){
+		System.out.println("DELETE: " + id);
 		database.remove(id);
 	}
 	

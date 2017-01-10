@@ -1,0 +1,45 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from BeanApiService WSDL service -->
+
+  <service name="BeanApi" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://service"/>
+      <parameter name="wsdlServiceElement" value="BeanApiService"/>
+      <parameter name="schemaQualified" value="http://soap,http://service"/>
+      <parameter name="wsdlServicePort" value="BeanApi"/>
+      <parameter name="className" value="service.BeanApiSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="BeanApi"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="get" qname="operNS:get" xmlns:operNS="http://service" returnQName="retNS:getReturn" xmlns:retNS="http://service" returnType="rtns:JavaBean" xmlns:rtns="http://soap" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://service" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="delete" qname="operNS:delete" xmlns:operNS="http://service" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://service" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="create" qname="operNS:create" xmlns:operNS="http://service" soapAction="" >
+        <parameter qname="pns:bean" xmlns:pns="http://service" type="tns:JavaBean" xmlns:tns="http://soap"/>
+      </operation>
+      <operation name="getAll" qname="operNS:getAll" xmlns:operNS="http://service" returnQName="retNS:getAllReturn" xmlns:retNS="http://service" returnType="rtns:JavaBean" xmlns:rtns="http://soap" soapAction="" >
+      </operation>
+      <parameter name="allowedMethods" value="getAll get create delete"/>
+
+      <typeMapping
+        xmlns:ns="http://soap"
+        qname="ns:JavaBean"
+        type="java:soap.JavaBean"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

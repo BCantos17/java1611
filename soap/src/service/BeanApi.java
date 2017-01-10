@@ -12,7 +12,7 @@ import soap.MyApi;
 @WebService
 public class BeanApi {
 	// just delegates all calls to an API
-	private MyApi api;
+	private MyApi api = new MyApi();
 	
 	@WebMethod
 	public void create(JavaBean bean){
@@ -25,8 +25,8 @@ public class BeanApi {
 	}
 	
 	@WebMethod
-	public Collection<JavaBean> getAll(){
-		return api.getAll();
+	public JavaBean[] getAll(){
+		return api.getAll().toArray(new JavaBean[0]);
 	}
 	
 	@WebMethod
