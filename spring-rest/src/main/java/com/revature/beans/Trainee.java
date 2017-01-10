@@ -58,6 +58,7 @@ public class Trainee {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + id;
 		result = prime * result + ((major == null) ? 0 : major.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
@@ -71,6 +72,8 @@ public class Trainee {
 		if (getClass() != obj.getClass())
 			return false;
 		Trainee other = (Trainee) obj;
+		if (id != other.id)
+			return false;
 		if (major == null) {
 			if (other.major != null)
 				return false;
@@ -83,4 +86,5 @@ public class Trainee {
 			return false;
 		return true;
 	}
+	
 }
