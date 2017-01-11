@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Tabular Datas</title>
+<script type="text/javascript"
+	src="https://code.angularjs.org/1.6.1/angular.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
+</head>
+<body ng-app="tabular">
+	<div ng-controller="tableExample" class="container">
+		<table class="table table-hover">
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+			</tr>
+			<!-- repeat TR for-each 'person' in '$scope.data' -->
+			<tr ng-repeat="person in data">
+				<td>{{person.id}}</td>
+				<td>{{person.name}}</td>
+			</tr>
+		</table>
+	</div>
+</body>
+<script type="text/javascript">
+	angular.module("tabular", []);
+
+	angular.module("tabular").controller("tableExample", function($scope) {
+		// data coming from "server"
+		$scope.data = [ {
+			id : 1,
+			name : 'Dan'
+		}, {
+			id : 2,
+			name : 'Randolph'
+		}, {
+			id : 3,
+			name : 'Howard'
+		} ];
+	});
+</script>
+</html>
+
+
+
+
+
+
+

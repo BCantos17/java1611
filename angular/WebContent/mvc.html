@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>MVC Example</title>
+<script type="text/javascript"
+	src="https://code.angularjs.org/1.6.1/angular.js"></script>
+</head>
+<body ng-app="mvc">
+	<!-- controller is in charge of everything in this div "view" -->
+	<div ng-controller="control"> 
+		<input type="text" ng-model="user" />
+		<div>{{ hello() }}</div>
+	</div>
+</body>
+<script type="text/javascript">
+// declare angular application and any dependent modules
+angular.module("mvc", []);
+
+// controller.. 				uses dependency injection for services
+angular.module("mvc").controller("control", function($scope){
+	// Default value
+	$scope.user = "Dan";
+	// Function to output values
+	$scope.hello = function(){
+		return "Hello, " + $scope.user;
+	}
+});
+
+
+</script>
+</html>
+
+
+
+
+
+
+
