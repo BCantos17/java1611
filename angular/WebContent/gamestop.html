@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Gamestop</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
+<script type="text/javascript"
+	src="https://code.angularjs.org/1.6.1/angular.js"></script>
+<script type="text/javascript" src="gamestore.js"></script>
+</head>
+<body ng-app="gameApp">
+	<!-- NAV BAR -->
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#"> <img style="height: 30px;"
+					src="http://www.gamestop.com//controls/shared/gamestopdotcom/headers/2013q2/gamestoplogo.png" />
+				</a>
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="#add">Add Game</a></li>
+					<li><a href="#find">Find Game</a></li>
+					<li><a href="#findAll">All Games</a></li>
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</nav>
+	<div class="col-md-6" ng-controller="allGames">
+		<h2>Games</h2>
+		<table class="table table-striped" id="findAll">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Title</th>
+					<th>Genre</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- $scope.games -->
+				<tr ng-repeat="temp in games">
+					<td>{{temp.id}}</td>
+					<td>{{temp.title}}</td>
+					<td>{{temp.genre}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<div id="add" ng-controller="addGame">
+			<h2>Add a game</h2>
+			<form ng-submit="send()">
+				<div class="form-group">
+					<label for="title">Game title</label> <input type="text"
+						ng-model="title" class="form-control" id="title"
+						aria-describedby="titleHelp" placeholder="Enter title"> <small
+						id="titleHelp" class="form-text text-muted">Name of the
+						game.</small>
+				</div>
+				<div class="form-group">
+					<label for="genre">Genre</label> <input type="text"
+						ng-model="genre" class="form-control" id="title"
+						aria-describedby="genreHelp" placeholder="Enter genre"> <small
+						id="genreHelp" class="form-text text-muted">The game's
+						genre.</small>
+				</div>
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+		<div id="find" ng-controller="findGame">
+			<h2>Find a game</h2>
+			<div class="form-group">
+				<label for="query">ID</label> <input ng-model="query" type="text"
+					class="form-control" id="title" aria-describedby="queryHelp"
+					placeholder="Enter ID"> <small id="queryHelp"
+					class="form-text text-muted">The Game ID to query</small>
+			</div>
+			<button ng-click="fetch()" type="submit" class="btn btn-primary">Submit</button>
+			<div ng-show="result">
+				Found game: {{result.title}}
+			</div>
+			<div ng-show="error"  
+				class="alert alert-danger" role="alert">
+				{{error}}
+			</div>
+		</div>
+	</div>
+</body>
+</html>
