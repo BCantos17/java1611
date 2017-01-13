@@ -22,6 +22,8 @@
 	crossorigin="anonymous"></script>
 <script type="text/javascript"
 	src="https://code.angularjs.org/1.6.1/angular.js"></script>
+<script type="text/javascript"
+	src="https://code.angularjs.org/1.6.1/angular-route.js"></script>
 <script type="text/javascript" src="gamestore.js"></script>
 </head>
 <body ng-app="gameApp">
@@ -50,62 +52,13 @@
 			<!--/.nav-collapse -->
 		</div>
 	</nav>
-	<div class="col-md-6" ng-controller="allGames">
-		<h2>Games</h2>
-		<table class="table table-striped" id="findAll">
-			<thead>
-				<tr>
-					<th>Id</th>
-					<th>Title</th>
-					<th>Genre</th>
-				</tr>
-			</thead>
-			<tbody>
-				<!-- $scope.games -->
-				<tr ng-repeat="temp in games">
-					<td>{{temp.id}}</td>
-					<td>{{temp.title}}</td>
-					<td>{{temp.genre}}</td>
-				</tr>
-			</tbody>
-		</table>
-		<div id="add" ng-controller="addGame">
-			<h2>Add a game</h2>
-			<form ng-submit="send()">
-				<div class="form-group">
-					<label for="title">Game title</label> <input type="text"
-						ng-model="title" class="form-control" id="title"
-						aria-describedby="titleHelp" placeholder="Enter title"> <small
-						id="titleHelp" class="form-text text-muted">Name of the
-						game.</small>
-				</div>
-				<div class="form-group">
-					<label for="genre">Genre</label> <input type="text"
-						ng-model="genre" class="form-control" id="title"
-						aria-describedby="genreHelp" placeholder="Enter genre"> <small
-						id="genreHelp" class="form-text text-muted">The game's
-						genre.</small>
-				</div>
-				<button type="submit" class="btn btn-primary">Submit</button>
-			</form>
-		</div>
-		<div id="find" ng-controller="findGame">
-			<h2>Find a game</h2>
-			<div class="form-group">
-				<label for="query">ID</label> <input ng-model="query" type="text"
-					class="form-control" id="title" aria-describedby="queryHelp"
-					placeholder="Enter ID"> <small id="queryHelp"
-					class="form-text text-muted">The Game ID to query</small>
-			</div>
-			<button ng-click="fetch()" type="submit" class="btn btn-primary">Submit</button>
-			<div ng-show="result">
-				Found game: {{result.title}}
-			</div>
-			<div ng-show="error"  
-				class="alert alert-danger" role="alert">
-				{{error}}
-			</div>
-		</div>
+	<div class="col-md-6 container" ng-view>
+		<!-- Angular Route can inject a view here -->
 	</div>
 </body>
 </html>
+
+
+
+
+

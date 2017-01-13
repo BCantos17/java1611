@@ -1,0 +1,13 @@
+<div> <!-- ng-controller="findGame" -->
+	<h2>Find a game</h2>
+	<div class="form-group">
+		<label for="query">ID</label> <input ng-model="query" type="text"
+			class="form-control" id="title" aria-describedby="queryHelp"
+			placeholder="Enter ID"> <small id="queryHelp"
+			class="form-text text-muted">The Game ID to query</small>
+	</div>
+	<button ng-click="fetch()" type="submit" class="btn btn-primary">Submit</button>
+	<div ng-show="result">Found game: {{result.title}}</div>
+	<div ng-show="error" class="alert alert-danger" role="alert">
+		{{error}}</div>
+</div>

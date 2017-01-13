@@ -1,7 +1,34 @@
 /**
  * Controllers and Angular
  */
-angular.module("gameApp", []);
+angular.module("gameApp", ["ngRoute"]); 
+						// $locationProvider $routeProvider
+
+/**
+ * Configure to use Angular Routing
+ */
+angular.module("gameApp")
+	.config(function($locationProvider, $routeProvider) {
+	
+	$locationProvider.hashPrefix("");
+	$routeProvider
+		.when("/add", {
+			templateUrl: "addGame.html",
+			controller: "addGame"
+		})
+		.when("/find", {
+			templateUrl: "findGame.html",
+			controller: "findGame"
+		})
+		.when("/findAll", {
+			templateUrl: "allGames.html",
+			controller: "allGames"
+		})
+		.otherwise({
+			templateUrl: "main.html"
+		});
+	
+});
 
 // $http service -> create XHR objs and communicate with servers
 angular.module("gameApp").controller("allGames", 
