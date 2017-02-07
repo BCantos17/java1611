@@ -1,0 +1,19 @@
+# store and execute multiple Docker images
+version: '2'
+services:
+  mongodb:
+    container_name: customer-datastore
+    image: mongo:3.2
+    command: mongod --smallfiles
+  web:
+    container_name: customer-ms
+    build: target   #folder where build information is
+    image: customer-service
+    depends_on: 
+      - mongodb
+    ports: # port mapping unique to machine : 'private' ip
+      - "8080:45987"
+    links:
+      - mongodb
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://mongodb/test
